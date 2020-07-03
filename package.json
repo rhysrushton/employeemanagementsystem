@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/rhysrushton/employeemanagementsystem/issues"
   },
-  "homepage": "https://github.com/rhysrushton/employeemanagementsystem#readme"
+  "homepage": "https://github.com/rhysrushton/employeemanagementsystem#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.0",
+    "mysql": "^2.18.1"
+  }
 }
