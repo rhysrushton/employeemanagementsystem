@@ -24,8 +24,7 @@ connect.connect(function (err) {
     console.log("     \    /\    /  |        |      /     \  /   \  /  \/  \ |");
      console.log("      \  /  \  /   |---     |     |         |   | |       | |---");
     console.log("       \/    \/    |______  |_____ \_____/  \___/ |       | |_____");
-    
-  
+
 });
 
 
