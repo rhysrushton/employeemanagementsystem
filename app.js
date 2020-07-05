@@ -2,11 +2,31 @@
 const inquirer = require("inquirer"); 
 const mysql = require("mysql"); 
 const consoleTable = require("console.table");
-const colors = require("colors")
+const colors = require("colors"); 
+const env = require("dotenv");
 colors.enable(); 
 
 
+var connect = mysql.createConnection({
+    host: "localhost",
+    port: 3306, 
+    user: "root", 
+    password: "Southpark1997!",
+    database: "employee_management"
+})
 
+connect.connect(function (err) {
+    if (err) throw err;
+    console.log("connected as id " + connect.threadId + "\n");
+    console.log(colors.rainbow("Welcome!"));
+    console.log("   \              / ");
+    console.log("    \            /  ______          _____    ___   __  __   ______");
+    console.log("     \    /\    /  |        |      /     \  /   \  /  \/  \ |");
+     console.log("      \  /  \  /   |---     |     |         |   | |       | |---");
+    console.log("       \/    \/    |______  |_____ \_____/  \___/ |       | |_____");
+    
+  
+});
 
 
 
