@@ -160,9 +160,11 @@ async function addDepartment(){
             type: "input", 
             message: "What department do you want to add?"
         },
-    ]);
-    const newDepartment = newDepartmentChoice.name;
-    console.log(newDepartment); 
+    ]).then((input) =>{
+        console.log(input.name);
+    })
+    
+  
 }
    
 
