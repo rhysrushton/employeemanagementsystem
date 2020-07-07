@@ -3,15 +3,16 @@ const inquirer = require("inquirer");
 const mysql = require("mysql"); 
 const consoleTable = require("console.table");
 const colors = require("colors"); 
-const env = require("dotenv");
+const env = require("dotenv").config();
 colors.enable(); 
 
+let password = process.env.PASSWORD
 
 var connect = mysql.createConnection({
     host: "localhost",
     port: 3306, 
     user: "root", 
-    password: "Southpark1997!",
+    password: password,
     database: "employee_management"
 })
 
@@ -26,6 +27,7 @@ connect.connect(function (err) {
     console.log("       \/    \/    |______  |_____ \_____/  \___/ |       | |_____");
 
 });
+
 
 
 
