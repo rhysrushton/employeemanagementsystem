@@ -47,9 +47,32 @@ function launchApp(){
             "View a role",
             "View an employee",
             "Update an employee role", ],     
-    })
+    }).then(({ launch}) => {
+        switch (launch) {
+            case "Add a department":
+                console.log("Add a department")
+            break; 
+            case "Add a role":
+                console.log("Add a role")
+            break; 
+            case "Add an employee":
+                console.log("Add an employee")
+            break; 
+            case "View a department":
+                console.log("View a department")
+            break; 
+            case "View a role":
+                console.log("View a role")
+            break; 
+            case "View an employee":
+                console.log("View an employee")
+            break; 
+            case "Update an employee role":
+                console.log("Update an employee role")
+            break; 
+        }
+    });
 }; 
-
 
 
 
