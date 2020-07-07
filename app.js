@@ -62,6 +62,7 @@ function launchApp(){
         switch (launch) {
             case "Add a department":
                 console.log("Add a department")
+                addDepartment(); 
             break; 
             case "Add a role":
                 console.log("Add a role")
@@ -88,6 +89,9 @@ function launchApp(){
     });
 }; 
 
+//This is a basic function for viewing all the employees 
+//It selects all from the employee table. 
+//Calls launchApp function at the end. 
 function viewEmployees() {
     connect.query(
       "SELECT * FROM employee",
@@ -99,7 +103,6 @@ function viewEmployees() {
       }
     );
 }
-
 
 //This async function allows the user to view employees by department. 
 //There is an inquirer function that allows them to choose. 
@@ -149,6 +152,18 @@ async function viewRole(){
      })
 })}; 
 
+async function addDepartment(){
+    console.log("We are adding a department")
+    const newDepartmentChoice = await inquirer.prompt([
+        {
+            name: "name",
+            type: "input", 
+            message: "What department do you want to add?"
+        },
+    ]);
+    const newDepartment = newDepartmentChoice.name;
+    console.log(newDepartment); 
+}
    
 
 
