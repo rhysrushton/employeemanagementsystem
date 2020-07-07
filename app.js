@@ -60,6 +60,7 @@ function launchApp(){
             break; 
             case "View a department":
                 console.log("View a department")
+                viewDeaprtment(); 
             break; 
             case "View a role":
                 console.log("View a role")
@@ -74,6 +75,10 @@ function launchApp(){
     });
 }; 
 
+
+async function viewDeaprtment(){
+    console.log("view")
+}
 
 
 
@@ -126,3 +131,5 @@ const man = {
 
 console.table(table, table1, man)
 */ 
+
+/* NEED TO EXPLAIN .env process set up for user */ 
