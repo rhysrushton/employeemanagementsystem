@@ -34,13 +34,21 @@ connect.connect(function (err) {
 })
 
 function launchApp(){
-    console.log("We have Begun"); 
-}
-
-
-
-
-
+    console.log("App Launched"); 
+    inquirer.prompt({
+        name: "launch",
+        type: "list", 
+        message: "Please choose an option:",
+        choices: [
+            "Add a department",
+            "Add a role",
+            "Add an employee",
+            "View a department",
+            "View a role",
+            "View an employee",
+            "Update an employee role", ],     
+    })
+}; 
 
 
 
