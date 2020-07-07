@@ -17,19 +17,27 @@ var connect = mysql.createConnection({
     database: "employee_management"
 })
 
+figlet('Employee Tracker', function(err, data) {
+    if (err) {
+        console.log('Something went wrong...');
+        console.dir(err);
+        return;
+    }
+    console.log(data)
+});
+
 connect.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connect.threadId + "\n");
-    console.log(colors.red("Time to track some employeeson on the:"));
-    figlet('Employee Tracker', function(err, data) {
-        if (err) {
-            console.log('Something went wrong...');
-            console.dir(err);
-            return;
-        }
-        console.log(data)
-    });
-}); 
+    console.log(colors.red("Time to track some employees")); 
+    launchApp(); 
+})
+
+function launchApp(){
+    console.log("We have Begun"); 
+}
+
+
 
 
 
