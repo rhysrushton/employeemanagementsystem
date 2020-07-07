@@ -75,8 +75,6 @@ function launchApp(){
     });
 }; 
 
-
-
 async function viewDeaprtment(){
     inquirer.prompt([
         {
@@ -86,7 +84,7 @@ async function viewDeaprtment(){
             type: "list"
         }
     ]).then((answer) => {
-     //console.log("hey")
+     console.log("You are Viewing the ", answer.Departments); 
      let query = "SELECT e.first_name, e.last_name, r.title, d.name FROM employee e INNER JOIN role r ON e.role_id = r.id INNER JOIN department d ON r.department_id = d.id WHERE d.name = ?"
      connect.query(query, [answer.Departments], 
      function(err, res){
