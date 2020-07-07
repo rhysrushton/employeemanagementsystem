@@ -55,6 +55,7 @@ function launchApp(){
             "Add a role",
             "Add an employee",
             "View a department",
+            "View all departments",
             "View a role",
             "View employees",
             "Update an employee role", ],     
@@ -73,6 +74,10 @@ function launchApp(){
             case "View a department":
                 //console.log("View a department")
                 viewDeaprtment(); 
+            break; 
+            case "View all departments":
+                console.log("View all");
+                viewAllDepartments(); 
             break; 
             case "View a role":
                 //console.log("View a role")
@@ -128,6 +133,21 @@ async function viewDeaprtment(){
      })
 })}; 
 
+//this is a function to view all departments. 
+//I added this so that users could view departments they have added. 
+function viewAllDepartments() {
+    connect.query(
+      "SELECT * FROM department",
+      function (err, res) {
+        if (err) throw err;
+        console.log("----------------------------------------------------");
+        console.table(res);
+        launchApp();
+      }
+    );
+}
+
+
 //This async function allows the user to view employees by role. 
 //There is an inquirer function that allows them to choose. 
 //Then the database is queried depending on their choice. 
@@ -152,6 +172,7 @@ async function viewRole(){
      })
 })}; 
 
+//This is function allows users to add deprtments to the database. 
 async function addDepartment(){
     console.log("We are adding a department")
     const newDepartmentChoice = await inquirer.prompt([
@@ -166,9 +187,7 @@ async function addDepartment(){
         connect.query(query,[{name: input.name}]); 
         launchApp();
     }) 
-    
-  
-}
+}; 
    
 
 
