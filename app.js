@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const consoleTable = require("console.table");
 const colors = require("colors"); 
 const env = require("dotenv").config();
+const figlet = require('figlet'); 
 colors.enable(); 
 
 let password = process.env.PASSWORD
@@ -19,14 +20,17 @@ var connect = mysql.createConnection({
 connect.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connect.threadId + "\n");
-    console.log(colors.rainbow("Welcome!"));
-    console.log("   \              / ");
-    console.log("    \            /  ______          _____    ___   __  __   ______");
-    console.log("     \    /\    /  |        |      /     \  /   \  /  \/  \ |");
-     console.log("      \  /  \  /   |---     |     |         |   | |       | |---");
-    console.log("       \/    \/    |______  |_____ \_____/  \___/ |       | |_____");
+    console.log(colors.red("Time to track some employeeson on the:"));
+    figlet('Employee Tracker', function(err, data) {
+        if (err) {
+            console.log('Something went wrong...');
+            console.dir(err);
+            return;
+        }
+        console.log(data)
+    });
+}); 
 
-});
 
 
 

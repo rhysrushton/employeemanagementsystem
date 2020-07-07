@@ -142,3 +142,5 @@ You are required to submit the following:
 ///////////////////////////////////////
 My Stuff
 https://www.npmjs.com/package/colors
+Figlet 
+https://www.npmjs.com/package/figlet
