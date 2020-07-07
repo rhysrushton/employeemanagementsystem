@@ -64,6 +64,7 @@ function launchApp(){
             break; 
             case "View a role":
                 console.log("View a role")
+                viewRole(); 
             break; 
             case "View an employee":
                 console.log("View an employee")
@@ -85,14 +86,34 @@ async function viewDeaprtment(){
         }
     ]).then((answer) => {
      console.log("You are Viewing the ", answer.Departments); 
-     let query = "SELECT e.first_name, e.last_name, r.title, d.name FROM employee e INNER JOIN role r ON e.role_id = r.id INNER JOIN department d ON r.department_id = d.id WHERE d.name = ?"
+     let query = "SELECT e.first_name, e.last_name, r.title, d.name FROM employee e INNER JOIN roles r ON e.role_id = r.id INNER JOIN department d ON r.department_id = d.id WHERE d.name = ?"
      connect.query(query, [answer.Departments], 
+     function(err, res){
+         if(err) throw err; 
+         console.log("-----------------------------");
+         console.table(res); 
+     })
+})}; 
+
+async function viewRole(){
+    inquirer.prompt([
+        {
+            message: "What would you like to view?",
+            choices: ["Da Boss", "Da Lil Boss", "Worker1", "Worker1"],
+            name: "Roles",
+            type: "list"
+        }
+    ]).then((answer) => {
+     console.log("You are Viewing the ", answer.Roles); 
+     let query = "SELECT employee.first_name, employee.last_name FROM employee INNER JOIN roles ON employee.role_id = roles.id WHERE roles.title = ?  "
+     connect.query(query, [answer.Roles], 
      function(err, res){
          if(err) throw err; 
          console.log("-----------------------------");
          console.table(res); 
      } )
 })}; 
+
 
 
 

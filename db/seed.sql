@@ -3,7 +3,7 @@ INSERT INTO department (name) VALUES
 ('Middle Department'),
 ('Workers'); 
 
-Insert INTO role (title, salary, department_id) VALUES
+Insert INTO roles (title, salary, department_id) VALUES
 ('Da Boss', 10, 1),
 ('Da lil Boss', 5, 2),
 ('Worker1', 1, 3),
