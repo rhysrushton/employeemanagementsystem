@@ -30,7 +30,7 @@ connect.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connect.threadId + "\n");
     console.log(colors.red("Time to track some employees")); 
-    launchApp(); 
+    launchApp();  
 })
 
 function launchApp(){
@@ -76,9 +76,26 @@ function launchApp(){
 }; 
 
 
+
 async function viewDeaprtment(){
-    console.log("view")
-}
+    inquirer.prompt([
+        {
+            message: "What would you like to view?",
+            choices: ["All Departments", "Boss Department", "Middle Department", "Workers"],
+            name: "Departments",
+            type: "list"
+        }
+    ]).then(() => {
+     console.log("hey")
+     connect.query("SELECT * FROM department",
+     function(err, res){
+         if(err) throw err; 
+         console.log("-----------------------------");
+         console.table(res); 
+     } )
+
+
+})}; 
 
 
 
