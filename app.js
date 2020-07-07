@@ -7,8 +7,12 @@ const env = require("dotenv").config();
 const figlet = require('figlet'); 
 colors.enable(); 
 
+//Defining the environmental variable
+//this is stored in a .env file which is in the gitignore too. 
 let password = process.env.PASSWORD
 
+//Establishing mysql connection
+//password variable used. 
 var connect = mysql.createConnection({
     host: "localhost",
     port: 3306, 
@@ -17,6 +21,7 @@ var connect = mysql.createConnection({
     database: "employee_management"
 })
 
+//Figlet is an npm package for generating text in the terminal. 
 figlet('Employee Tracker', function(err, data) {
     if (err) {
         console.log('Something went wrong...');
@@ -26,6 +31,8 @@ figlet('Employee Tracker', function(err, data) {
     console.log(data)
 });
 
+//If the connection is successful then the the launchApp function will be good. 
+//Also the npm colors package is used. See line 39. 
 connect.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connect.threadId + "\n");
@@ -33,6 +40,10 @@ connect.connect(function (err) {
     launchApp();  
 })
 
+//This is the launchApp function
+//The user is given a choice. 
+//Depending on their choice an async function will start. 
+//At the end of that async function the launchAPP function will be called again. 
 function launchApp(){
     console.log("App Launched"); 
     inquirer.prompt({
@@ -45,7 +56,7 @@ function launchApp(){
             "Add an employee",
             "View a department",
             "View a role",
-            "View an employee",
+            "View employees",
             "Update an employee role", ],     
     }).then(({ launch}) => {
         switch (launch) {
@@ -63,11 +74,12 @@ function launchApp(){
                 viewDeaprtment(); 
             break; 
             case "View a role":
-                console.log("View a role")
+                //console.log("View a role")
                 viewRole(); 
             break; 
-            case "View an employee":
-                console.log("View an employee")
+            case "View employees":
+                //console.log("View an employee")
+                viewEmployees(); 
             break; 
             case "Update an employee role":
                 console.log("Update an employee role")
@@ -76,6 +88,23 @@ function launchApp(){
     });
 }; 
 
+function viewEmployees() {
+    connect.query(
+      "SELECT * FROM employee",
+      function (err, res) {
+        if (err) throw err;
+        console.log("----------------------------------------------------");
+        console.table(res);
+        launchApp();
+      }
+    );
+}
+
+
+//This async function allows the user to view employees by department. 
+//There is an inquirer function that allows them to choose. 
+//Then the database is queried depending on their choice. 
+//The launchApp function is then called at the end of the function. 
 async function viewDeaprtment(){
     inquirer.prompt([
         {
@@ -92,9 +121,14 @@ async function viewDeaprtment(){
          if(err) throw err; 
          console.log("-----------------------------");
          console.table(res); 
+         launchApp();
      })
 })}; 
 
+//This async function allows the user to view employees by role. 
+//There is an inquirer function that allows them to choose. 
+//Then the database is queried depending on their choice. 
+//The launchApp function is then called at the end of the function. 
 async function viewRole(){
     inquirer.prompt([
         {
@@ -111,8 +145,11 @@ async function viewRole(){
          if(err) throw err; 
          console.log("-----------------------------");
          console.table(res); 
-     } )
+         launchApp();
+     })
 })}; 
+
+   
 
 
 
