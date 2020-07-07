@@ -162,7 +162,10 @@ async function addDepartment(){
         },
     ]).then((input) =>{
         console.log(input.name);
-    })
+        let query = "INSERT INTO department SET ?";
+        connect.query(query,[{name: input.name}]); 
+        launchApp();
+    }) 
     
   
 }
