@@ -59,7 +59,7 @@ function launchApp(){
                 console.log("Add an employee")
             break; 
             case "View a department":
-                console.log("View a department")
+                //console.log("View a department")
                 viewDeaprtment(); 
             break; 
             case "View a role":
@@ -81,20 +81,19 @@ async function viewDeaprtment(){
     inquirer.prompt([
         {
             message: "What would you like to view?",
-            choices: ["All Departments", "Boss Department", "Middle Department", "Workers"],
+            choices: ["Boss Department", "Middle Department", "Workers"],
             name: "Departments",
             type: "list"
         }
-    ]).then(() => {
-     console.log("hey")
-     connect.query("SELECT * FROM department",
+    ]).then((answer) => {
+     //console.log("hey")
+     let query = "SELECT e.first_name, e.last_name, r.title, d.name FROM employee e INNER JOIN role r ON e.role_id = r.id INNER JOIN department d ON r.department_id = d.id WHERE d.name = ?"
+     connect.query(query, [answer.Departments], 
      function(err, res){
          if(err) throw err; 
          console.log("-----------------------------");
          console.table(res); 
      } )
-
-
 })}; 
 
 
