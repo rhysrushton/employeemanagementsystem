@@ -90,7 +90,8 @@ function launchApp(){
                 viewEmployees(); 
             break; 
             case "Update an employee role":
-                console.log("Update an employee role")
+                //console.log("Update an employee role")
+                updateEmployee(); 
             break; 
         }
     });
@@ -267,54 +268,49 @@ function addEmployee(){
      )})
 }; 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Figuring out colors. 
-//For reference only.
-//Delete after app. 
-
-/*
-var x = myFunction(4, 3);   // Function is called, return value will end up in x
-
-function myFunction(a, b) {
-  return a * b;  
-             // Function returns the product of a and b
-  
+function updateEmployee(){
+    console.log("update");
+    employeeList().then(function(names){
+        console.log(names)
+    }) 
+   
+   
+      
 }
 
-myFunction(); 
-console.log('x'.green); 
-console.log(colors.rainbow('Hey'), x); 
-*/ 
-
-/*
-//Basic stuff for figuring out tables. 
-const table = ["team 1", "team2", "team3", "team4", "team5"];
-const table1 = ["team1", "team2", "1000"];
-const man = {
-    man: "man",
-    age: 1001,
-    hasAJob: "No"
+function employeeList(){
+    return new Promise(function(resolve, reject){
+        const list = [];
+        connect.query("SELECT * FROM employee", function(err, res){
+            if(err) throw err; 
+            res.forEach((employee) => {
+                list.push({
+                    first_name: employee.first_name,
+                    last_name: employee.last_name,
+                });
+            });
+            resolve(list);
+            console.log(list); 
+        });
+    }); 
 }
 
-console.table(table, table1, man)
-*/ 
 
-/* NEED TO EXPLAIN .env process set up for user */ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
