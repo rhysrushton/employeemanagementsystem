@@ -62,7 +62,7 @@ function launchApp(){
     }).then(({ launch}) => {
         switch (launch) {
             case "Add a department":
-                console.log("Add a department")
+                //console.log("Add a department")
                 addDepartment(); 
             break; 
             case "Add a role":
@@ -70,7 +70,8 @@ function launchApp(){
                 addRole(); 
             break; 
             case "Add an employee":
-                console.log("Add an employee")
+                //console.log("Add an employee")
+                addEmployee(); 
             break; 
             case "View a department":
                 //console.log("View a department")
@@ -224,7 +225,35 @@ function addRole(){
                 launchApp(); 
             },
         )
+    });
+};
+
+function addEmployee(){
+    inquirer.prompt([
+        {
+            name: "first",
+            type: "input",
+            message: "What is the first name of your employee?"
+        },
+        {
+            name: "last",
+            type: "input",
+            message: "What is the last name of your employee?"
+        },
+        {
+            name: "role",
+            type: "input",
+            message: "What is the role id of your employee?"
+        },
+        {
+            name: "Manager",
+            type: "input",
+            message: "What is the manager id of this employee?"
+        },
+    ]).then(function(answer){
+     console.log(answer); 
     })
+
 }
 
 
