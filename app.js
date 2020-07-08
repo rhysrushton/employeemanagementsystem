@@ -66,7 +66,8 @@ function launchApp(){
                 addDepartment(); 
             break; 
             case "Add a role":
-                console.log("Add a role")
+                //console.log("Add a role")
+                addRole(); 
             break; 
             case "Add an employee":
                 console.log("Add an employee")
@@ -76,7 +77,7 @@ function launchApp(){
                 viewDeaprtment(); 
             break; 
             case "View all departments":
-                console.log("View all");
+                //console.log("View all");
                 viewAllDepartments(); 
             break; 
             case "View a role":
@@ -174,8 +175,8 @@ async function viewRole(){
 
 //This is function allows users to add deprtments to the database. 
 async function addDepartment(){
-    console.log("We are adding a department")
-    const newDepartmentChoice = await inquirer.prompt([
+    //console.log("We are adding a department")
+     inquirer.prompt([
         {
             name: "name",
             type: "input", 
@@ -188,10 +189,30 @@ async function addDepartment(){
         launchApp();
     }) 
 }; 
-   
 
-
-
+//This is function allows users to add deprtments to the database. 
+function addRole(){
+    inquirer.prompt(
+        [{
+            name: "roleTitle",
+            type: "input",
+            message: "What is the title for this role?"
+        },
+        {
+            name: "salary",
+            type: "input",
+            message: "What is the salary for this role?"
+        },
+        {
+            name: "departmentID",
+            type: "input",
+            message: "What is the departmentID for this role?"
+        }
+    ]
+    ).then(function(answer){
+        console.log(answer)
+    })
+}
 
 
 
