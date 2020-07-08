@@ -251,10 +251,21 @@ function addEmployee(){
             message: "What is the manager id of this employee?"
         },
     ]).then(function(answer){
-     console.log(answer); 
-    })
-
-}
+     connect.query(
+         "INSERT INTO employee SET ?",
+         {
+             first_name: answer.first,
+             last_name: answer.last,
+             role_id: answer.role,
+             manager_id: answer.Manager
+         },
+         function (err) {
+            if(err)throw(err);
+            console.log("done"); 
+            launchApp(); 
+        },
+     )})
+}; 
 
 
 
