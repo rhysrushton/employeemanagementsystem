@@ -211,6 +211,19 @@ function addRole(){
     ]
     ).then(function(answer){
         console.log(answer)
+        connect.query(
+            "INSERT INTO roles SET ?",
+            {
+            title: answer.roleTitle,
+            salary: answer.salary,
+            department_id: answer.departmentID,
+            },
+            function (err) {
+                if(err)throw(err);
+                console.log("done"); 
+                launchApp(); 
+            },
+        )
     })
 }
 
