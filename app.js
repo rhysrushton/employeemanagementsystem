@@ -270,14 +270,30 @@ function addEmployee(){
 
 function updateEmployee(){
     console.log("update");
+    const names  = []; 
     employeeList().then(function(list){
         console.log("list", list[0])
         for(var i = 0; i < list.length; i++){
             var name = list[i].first_name; 
-            console.log(name)
-        }
-    }) 
-   
+            names.push(name);   
+        } console.log(names)
+        inquirer.prompt([
+        {
+            name: "nameofEmployee",
+            message: "Who would you like to update?", 
+            type: "list",
+            choices: names
+        },
+        {
+            name: "roleChoice",
+            message: "What role id would you like to give them?",
+            type: "input"
+        },
+    ]).then(function(answer){
+        console.log(answer)
+    })
+
+    })
    
       
 }
