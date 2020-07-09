@@ -270,8 +270,12 @@ function addEmployee(){
 
 function updateEmployee(){
     console.log("update");
-    employeeList().then(function(names){
-        console.log(names)
+    employeeList().then(function(list){
+        console.log("list", list[0])
+        for(var i = 0; i < list.length; i++){
+            var name = list[i].first_name; 
+            console.log(name)
+        }
     }) 
    
    
@@ -290,7 +294,7 @@ function employeeList(){
                 });
             });
             resolve(list);
-            console.log(list); 
+            //console.log(list); 
         });
     }); 
 }
