@@ -175,7 +175,7 @@ async function viewRole(){
      })
 })}; 
 
-//This is function allows users to add deprtments to the database. 
+//This is function allows users to add depratments to the database. 
 async function addDepartment(){
     //console.log("We are adding a department")
      inquirer.prompt([
@@ -185,14 +185,14 @@ async function addDepartment(){
             message: "What department do you want to add?"
         },
     ]).then((input) =>{
-        console.log(input.name);
+        //console.log(input.name);
         let query = "INSERT INTO department SET ?";
         connect.query(query,[{name: input.name}]); 
         launchApp();
     }) 
 }; 
 
-//This is function allows users to add deprtments to the database. 
+//This is function allows users to add roles to the database. 
 function addRole(){
     inquirer.prompt(
         [{
@@ -212,7 +212,7 @@ function addRole(){
         }
     ]
     ).then(function(answer){
-        console.log(answer)
+        //console.log(answer)
         connect.query(
             "INSERT INTO roles SET ?",
             {
@@ -222,13 +222,14 @@ function addRole(){
             },
             function (err) {
                 if(err)throw(err);
-                console.log("done"); 
+                //console.log("done"); 
                 launchApp(); 
             },
         )
     });
 };
 
+//This function allows the user to add employees
 function addEmployee(){
     inquirer.prompt([
         {
@@ -262,17 +263,23 @@ function addEmployee(){
          },
          function (err) {
             if(err)throw(err);
-            console.log("done"); 
+           // console.log("done"); 
             launchApp(); 
         },
      )})
 }; 
 
+//This is the update employee function
+//it calls the employeeList function below
+//it takes the list info from the employeList function and then stores it in the names arry. 
+//the names array only stores the first_name via the for loop. 
+//the names array is then used in the choices iquirer for the inquirer prompt. 
+//The database is then queried and the employee role updated/ 
 function updateEmployee(){
-    console.log("update");
+    //console.log("update");
     const names  = []; 
     employeeList().then(function(list){
-        console.log("list", list[0])
+        //console.log("list", list[0])
         for(var i = 0; i < list.length; i++){
             var name = list[i].first_name; 
             names.push(name);   
@@ -291,13 +298,23 @@ function updateEmployee(){
         },
     ]).then(function(answer){
         console.log(answer)
+        let role_id = answer.roleChoice;
+        let first_name = answer.nameofEmployee; 
+        let query = "UPDATE employee SET ? WHERE ?"; 
+        //console.log(role_id)
+        //console.log(first_name)
+        connect.query(query, [{role_id: role_id}, {first_name: first_name}],
+        function (err) {
+            if(err)throw(err);
+            //console.log("done"); 
+            launchApp(); 
+        }, 
+        ) 
     })
-
-    })
-   
-      
+    })    
 }
 
+//This function gets the info for the above function. 
 function employeeList(){
     return new Promise(function(resolve, reject){
         const list = [];
